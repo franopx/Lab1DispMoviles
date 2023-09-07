@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">AppDispMoviles</string>
+    // general strings
+    <string name="close">Close</string>
+
+    // app specific
+    <string name="app_name">Bop It!</string>
+    <string name="welcome_message">Welcome to Bop It!</string>
+
+    // home screen
+    <string name="home_title">Home</string>
+    <string name="home_button_play">Play Game</string>
+    <string name="home_button_about">About</string>
+
+    // about popup
+    <string name="about_text">Developer: Francisco Galeno</string>
 </resources>
