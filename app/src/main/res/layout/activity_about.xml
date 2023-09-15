@@ -36,10 +36,13 @@
         android:id="@+id/textView3"
         android:layout_width="178dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="117dp"
         android:text="@string/about_credits"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="116dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/button3"

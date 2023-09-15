@@ -1,18 +1,20 @@
 <resources>
-    // general strings
+    <!-- Strings generales-->
     <string name="close">Close</string>
     <string name="back">Back</string>
 
-    // app specific
+    <!-- App -->
     <string name="app_name">Bop It!</string>
     <string name="welcome_message">Welcome to Bop It!</string>
 
-    // home screen
+    <!-- Pantalla inicial -->
     <string name="home_title">Home</string>
     <string name="home_button_play">Play Game</string>
-    <string name="home_button_about">About</string>
+    <string name="menu_setting">Settings</string>
+    <string name="menu_about">About</string>
 
-    // about screen
+
+    <!-- Pantalla acerca de -->
     <string name="about_text">This is the android adaptation of the popular Hasbro\'s game Bop It!</string>
     <string name="about_howtoplay">To play this game follow quickly the instructions shown on the screen to
     score a point, the game gets progressively faster and ends when you don\'t do the action in time.</string>

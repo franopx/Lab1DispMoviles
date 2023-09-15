@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:key="first_preferencescreen">
+
+    <PreferenceCategory
+        android:title="Player Data">
+
+        <EditTextPreference
+            android:defaultValue="Player"
+            android:key="player_name"
+            android:title="Player Name">
+        </EditTextPreference>
+
+        <Preference
+            android:defaultValue="0"
+            android:key="high_score"
+            android:title="High Score"></Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Game Customization">
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="General Administration">
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -5,5 +5,8 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="CustomToolbarStyle" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
     <style name="Theme.AppDispMoviles" parent="Base.Theme.AppDispMoviles" />
 </resources>
