@@ -1,33 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="first_preferencescreen">
 
     <PreferenceCategory
-        android:title="Player Data">
+        android:title="@string/category_player_data">
 
         <EditTextPreference
             android:defaultValue="Player"
             android:key="player_name"
-            android:title="Player Name">
+            android:title="@string/player_name"
+            app:useSimpleSummaryProvider="true">
         </EditTextPreference>
 
         <Preference
             android:defaultValue="0"
             android:key="high_score"
-            android:title="High Score"></Preference>
+            android:title="High Score: 0"
+            android:selectable="false"></Preference>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Game Customization">
+        android:title="@string/category_game_customization">
 
+        <ListPreference
+            android:key = "color_theme"
+            android:title = "@string/color_theme"
+            app:defaultValue="Purple"
+            app:entries="@array/color_themes"
+            app:entryValues="@array/color_themes_values"
+            app:useSimpleSummaryProvider="true">
+        </ListPreference>
+
+        <ListPreference
+            android:key = "volume"
+            android:title = "@string/volume"
+            app:defaultValue="Medium"
+            app:entries="@array/volume"
+            app:entryValues="@array/volume"
+            app:useSimpleSummaryProvider="true">
+        </ListPreference>
+
+        <ListPreference
+            android:key = "instructions"
+            android:title = "@string/instructions"
+            app:defaultValue="Yes"
+            app:entries="@array/instructions_available"
+            app:entryValues="@array/instructions_available"
+            app:useSimpleSummaryProvider="true">
+        </ListPreference>
+
+        <ListPreference
+            android:key = "ui_size"
+            android:title = "@string/ui_size"
+            app:defaultValue="Medium"
+            app:entries="@array/ui_size"
+            app:entryValues="@array/ui_size"
+            app:useSimpleSummaryProvider="true">
+        </ListPreference>
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="General Administration">
+        android:title="@string/category_general">
 
+        <Preference
+            android:key = "default"
+            android:title = "@string/default_config">
+
+        </Preference>
     </PreferenceCategory>
 
 </PreferenceScreen>

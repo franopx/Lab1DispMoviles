@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="color_themes">
+        <item>Purple</item>
+        <item>Green</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="color_themes_values">
+        <item>Purple</item>
+        <item>Green</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="volume">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+
+    <string-array name="instructions_available">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="ui_size">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Big</item>
+    </string-array>
+</resources>

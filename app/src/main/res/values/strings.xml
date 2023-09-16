@@ -6,6 +6,7 @@
     <!-- App -->
     <string name="app_name">Bop It!</string>
     <string name="welcome_message">Welcome to Bop It!</string>
+    <string name="author">Francisco Galeno</string>
 
     <!-- Pantalla inicial -->
     <string name="home_title">Home</string>
@@ -13,7 +14,18 @@
     <string name="menu_setting">Settings</string>
     <string name="menu_about">About</string>
 
-
+    <!-- Preferencias -->
+    <string name="category_player_data">Player Data</string>
+    <string name="player_name">Player Name</string>
+    <string name="high_score">High Score</string>
+    <string name="category_game_customization">Game Customization</string>
+    <string name="color_theme">Color Theme</string>
+    <string name="volume">Volume</string>
+    <string name="instructions">Instructions available</string>
+    <string name="ui_size">User interface size</string>
+    <string name="category_general">General Administrators</string>
+    <string name="default_config">Set preferences to default</string>
+    <string name="sure_dialog">Are you sure?</string>
     <!-- Pantalla acerca de -->
     <string name="about_text">This is the android adaptation of the popular Hasbro\'s game Bop It!</string>
     <string name="about_howtoplay">To play this game follow quickly the instructions shown on the screen to
