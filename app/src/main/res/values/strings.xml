@@ -26,11 +26,19 @@
     <string name="category_general">General Administrators</string>
     <string name="default_config">Set preferences to default</string>
     <string name="sure_dialog">Are you sure?</string>
+
     <!-- Pantalla acerca de -->
     <string name="about_text">This is the android adaptation of the popular Hasbro\'s game Bop It!</string>
     <string name="about_howtoplay">To play this game follow quickly the instructions shown on the screen to
     score a point, the game gets progressively faster and ends when you don\'t do the action in time.</string>
     <string name="about_credits">Developer: Francisco Galeno</string>
+
+    <!-- Pantalla de juego -->
+    <string name="clear_button">Complete action</string>
+    <string name="fail_button">Fail action</string>
+    <string name="debug_screen">Debug Options</string>
+
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
