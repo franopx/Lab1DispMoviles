@@ -12,6 +12,7 @@ import android.widget.Toast
 
 class SoloGame : AppCompatActivity() {
 
+    private lateinit var gestureDetector: GestureDetector
     private lateinit var backgroundMusic: MediaPlayer
     private var playbackParams: PlaybackParams? = null
     private lateinit var winSound: MediaPlayer
@@ -23,6 +24,8 @@ class SoloGame : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solo_game)
 
+
+        gestureDetector = GestureDetector(this,GestureListener())
         backgroundMusic = MediaPlayer.create(this, R.raw.background_music)
         backgroundMusic.setVolume(0.3f, 0.3f)
         backgroundMusic.isLooping = true
@@ -33,6 +36,13 @@ class SoloGame : AppCompatActivity() {
         backgroundMusic.start()
 
         winSound = MediaPlayer.create(this, R.raw.positive_sound)
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if (event != null) {
+            gestureDetector.onTouchEvent(event)
+        }
+        return super.onTouchEvent(event)
     }
 
     override fun onPause()
@@ -70,7 +80,7 @@ class SoloGame : AppCompatActivity() {
                 showToast("Fling Detected")
                 return true
             }
-            showToast("atata")
+
             return false
         }
     }
