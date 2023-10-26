@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
     }
 
+    fun onPlayButtonClick(view: View?)
+    {
+        val switchActivityIntent = Intent(this, SoloGame::class.java)
+        startActivity(switchActivityIntent)
+    }
+
     fun onAboutButtonClick(view: View?)
     {
         val switchActivityIntent = Intent(this, AboutActivity::class.java)

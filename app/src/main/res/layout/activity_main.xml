@@ -14,7 +14,7 @@
         android:layout_marginTop="74dp"
         android:layout_marginEnd="120dp"
         android:layout_marginBottom="227dp"
-        android:onClick="onClickTest"
+        android:onClick="onPlayButtonClick"
         android:text="@string/home_button_play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
