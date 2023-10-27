@@ -36,6 +36,7 @@ class SoloGame : AppCompatActivity() {
         backgroundMusic.start()
 
         winSound = MediaPlayer.create(this, R.raw.positive_sound)
+        failSound = MediaPlayer.create(this, R.raw.negative_sound)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -62,6 +63,11 @@ class SoloGame : AppCompatActivity() {
         winSound.start()
     }
 
+    public fun onFailButtonClick(view: View?)
+    {
+        failSound.start()
+    }
+
     private fun showToast(message: String)
     {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -75,9 +81,9 @@ class SoloGame : AppCompatActivity() {
             velocityY: Float
         ): Boolean
         {
-            if(velocityY > velocityX*2)
+            if(velocityY < -1000 && velocityX > -1000 && velocityX < 1000)
             {
-                showToast("Fling Detected")
+                showToast("Fling detected!")
                 return true
             }
 

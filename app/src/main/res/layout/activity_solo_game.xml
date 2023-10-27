@@ -37,6 +37,7 @@
             android:id="@+id/failButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onFailButtonClick"
             android:text="@string/fail_button" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
