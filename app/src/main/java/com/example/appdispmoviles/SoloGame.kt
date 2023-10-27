@@ -49,7 +49,7 @@ class SoloGame : AppCompatActivity() {
     override fun onPause()
     {
         super.onPause()
-        backgroundMusic.stop()
+        backgroundMusic.pause()
     }
 
     override fun onResume()
