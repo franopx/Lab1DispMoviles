@@ -18,6 +18,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import kotlin.math.abs
 import kotlin.random.Random
 
 class SoloGame : AppCompatActivity() {
@@ -32,11 +33,13 @@ class SoloGame : AppCompatActivity() {
 
     private lateinit var sensorManager: SensorManager
 
-    private val gamePrompts = listOf("Shake!", "Touch!", "Fling!")
+    private val gamePrompts = arrayOf("Shake!", "Touch!", "Fling!")
     public var currentGame = 0
-    var gameTime = 3000
+    var gameTime: Long = 5000
     var gameWin = false
     lateinit var gameText: TextView
+    var gameHandler: Handler = Handler(Looper.getMainLooper())
+    var score: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,14 +68,15 @@ class SoloGame : AppCompatActivity() {
         }
 
         gameText = findViewById<TextView>(R.id.accelText)
-        currentGame = Random.nextInt() % 2
+        currentGame = abs(Random.nextInt() % 2)
+        println(currentGame)
         gameText.text = gamePrompts[currentGame]
         gameText.setTextColor(Color.RED)
+
         val delayMillis = gameTime.toLong()
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            nextGame()
-        }, delayMillis)
+        gameHandler.postDelayed(nextGameRunnable, delayMillis)
+
+        displayTimerHandler.postDelayed(displayTimerRunnable, displayTimerMillis)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -94,15 +98,7 @@ class SoloGame : AppCompatActivity() {
         backgroundMusic.start()
     }
 
-    public fun onClearButtonClick(view: View?)
-    {
-        winSound.start()
-    }
 
-    public fun onFailButtonClick(view: View?)
-    {
-        failSound.start()
-    }
 
     private fun showToast(message: String)
     {
@@ -110,14 +106,12 @@ class SoloGame : AppCompatActivity() {
     }
 
     inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
-
         override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
+
+            println("$currentGame --- $gameWin")
             if(currentGame == 1 && !gameWin)
             {
-                gameText.setTextColor(Color.GREEN)
-                gameWin = true
-                winSound.start()
-                showToast("Well Done! 1")
+                winGame()
             }
             return super.onSingleTapConfirmed(e)
         }
@@ -129,26 +123,20 @@ class SoloGame : AppCompatActivity() {
             velocityY: Float
         ): Boolean
         {
-            if(velocityY < -1000 && velocityX > -1000 && velocityX < 1000)
+            if(velocityY < -500 && velocityX > -500 && velocityX < 500)
             {
                 if(currentGame == 2 && !gameWin)
                 {
-                    gameText.setTextColor(Color.GREEN)
-                    gameWin = true
-                    winSound.start()
-                    showToast("Well Done! 2")
+                    winGame()
                 }
-
                 return true
             }
-
             return false
         }
     }
 
     var gravity = floatArrayOf(0f, 0f, 0f)
     var linearAcceleration = floatArrayOf(0f, 0f, 0f)
-
     inner class SensorListener: SensorEventListener {
 
         override fun onSensorChanged(event: SensorEvent) {
@@ -173,10 +161,7 @@ class SoloGame : AppCompatActivity() {
             {
                 if(currentGame == 0 && !gameWin)
                 {
-                    gameText.setTextColor(Color.GREEN)
-                    winSound.start()
-                    gameWin = true
-                    showToast("Well Done! 3")
+                    winGame()
                 }
             }
         }
@@ -187,36 +172,68 @@ class SoloGame : AppCompatActivity() {
     }
 
     // Game
-    private fun nextGame() {
 
+    private val nextGameRunnable = Runnable { nextGame() }
+    private fun nextGame() {
         if(gameWin)
         {
-            do {
-                currentGame = Random.nextInt() % 2
-            } while (currentGame < 0 || currentGame > 2)
-
             gameWin = false
-
             gameText.setTextColor(Color.RED)
-            val delayMillis = gameTime.toLong()
-            val handler = Handler(Looper.getMainLooper())
-            handler.postDelayed({
-                nextGame()
-            }, delayMillis)
+            println("CURRENT : $currentGame")
+            gameText.text = gamePrompts[currentGame]
+            findViewById<TextView>(R.id.scoreText).text = "Score: $score"
+            gameTime -= displayTimerMillis
+            displayTime = gameTime.toFloat()/1000
+            gameHandler.postDelayed(nextGameRunnable, gameTime)
         }
         else
         {
-            failSound.start()
-            showToast("Try Again!")
-            val value = 1000
-            val delayMillis = value.toLong()
-
-            val handler = Handler(Looper.getMainLooper())
-            handler.postDelayed({
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }, delayMillis)
+            loseGame()
         }
+    }
 
+    private fun winGame()
+    {
+        gameText.setTextColor(Color.GREEN)
+        gameWin = true
+        winSound.start()
+        score += 1
+
+        val prevGame = currentGame
+        do {
+            currentGame = abs(Random.nextInt() % 3)
+        } while ((currentGame < 0 || currentGame > 3) && currentGame == prevGame)
+
+        gameHandler.removeCallbacks(nextGameRunnable)
+        gameHandler.postDelayed(nextGameRunnable, 100)
+    }
+
+    private fun loseGame()
+    {
+        failSound.start()
+        showToast("Try Again! Score: $score")
+        val value = 1000
+        val delayMillis = value.toLong()
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }, delayMillis)
+    }
+
+    var displayTime: Float = gameTime.toFloat()/1000
+    val displayTimerMillis: Long = 100
+    val displayTimerHandler: Handler = Handler(Looper.getMainLooper())
+    private val displayTimerRunnable = Runnable {
+        findViewById<TextView>(R.id.timerText).text = String.format("%.1f", displayTime)
+        displayTime -= 0.1f;
+        displayTime = Math.max(displayTime, 0f)
+        callDisplayTime()
+    }
+
+    private fun callDisplayTime()
+    {
+        displayTimerHandler.postDelayed(displayTimerRunnable, displayTimerMillis)
     }
 }
